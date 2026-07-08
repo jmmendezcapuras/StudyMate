@@ -21,21 +21,25 @@ import edu.cit.capuras.studymate.mobile.ui.theme.StudyMateTheme
 private object Routes {
     const val LOGIN = "login"
     const val REGISTER = "register"
-    const val DASHBOARD = "dashboard/{username}"
+    const val DASHBOARD = "dashboard/{userId}/{username}"
 
-    fun dashboard(username: String) = "dashboard/$username"
+    fun dashboard(userId: Long, username: String) = "dashboard/$userId/$username"
 }
 
 class MainActivity : ComponentActivity() {
 
     private val authViewModel: AuthViewModel by viewModels()
+    private val dashboardViewModel: DashboardViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             StudyMateTheme {
                 Surface(modifier = Modifier.fillMaxSize()) {
-                    StudyMateApp(authViewModel = authViewModel)
+                    StudyMateApp(
+                        authViewModel = authViewModel,
+                        dashboardViewModel = dashboardViewModel
+                    )
                 }
             }
         }
@@ -43,12 +47,12 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun StudyMateApp(authViewModel: AuthViewModel) {
+fun StudyMateApp(authViewModel: AuthViewModel, dashboardViewModel: DashboardViewModel) {
     val navController: NavHostController = rememberNavController()
     val context = androidx.compose.ui.platform.LocalContext.current
 
     val startDestination = if (SessionManager.isLoggedIn(context)) {
-        Routes.dashboard(SessionManager.getUsername(context) ?: "")
+        Routes.dashboard(SessionManager.getUserId(context), SessionManager.getUsername(context) ?: "")
     } else {
         Routes.LOGIN
     }
@@ -60,7 +64,7 @@ fun StudyMateApp(authViewModel: AuthViewModel) {
                 viewModel = authViewModel,
                 onLoginSuccess = { id, username ->
                     SessionManager.saveSession(context, id, username)
-                    navController.navigate(Routes.dashboard(username)) {
+                    navController.navigate(Routes.dashboard(id, username)) {
                         popUpTo(Routes.LOGIN) { inclusive = true }
                     }
                 },
@@ -73,7 +77,7 @@ fun StudyMateApp(authViewModel: AuthViewModel) {
                 viewModel = authViewModel,
                 onRegisterSuccess = { id, username ->
                     SessionManager.saveSession(context, id, username)
-                    navController.navigate(Routes.dashboard(username)) {
+                    navController.navigate(Routes.dashboard(id, username)) {
                         popUpTo(Routes.LOGIN) { inclusive = true }
                     }
                 },
@@ -82,9 +86,12 @@ fun StudyMateApp(authViewModel: AuthViewModel) {
         }
 
         composable(Routes.DASHBOARD) { backStackEntry ->
+            val userId = backStackEntry.arguments?.getString("userId")?.toLongOrNull() ?: -1L
             val username = backStackEntry.arguments?.getString("username") ?: ""
             DashboardScreen(
+                userId = userId,
                 username = username,
+                viewModel = dashboardViewModel,
                 onLogout = {
                     SessionManager.clearSession(context)
                     navController.navigate(Routes.LOGIN) {
