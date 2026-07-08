@@ -1,35 +1,38 @@
 package edu.cit.capuras.studymate.mobile.ui.theme
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 
-private val LightColors = lightColorScheme(
-    primary = StudyMatePurple,
+// A single light color scheme, matching the web app's palette exactly.
+// (StudyMate's web client doesn't offer a dark mode either, so mobile
+// stays consistent with one theme for now.)
+private val StudyMateColors = lightColorScheme(
+    primary = StudyMateAccent,
     onPrimary = StudyMateSurface,
-    primaryContainer = StudyMatePurpleDark,
-    background = StudyMateBackground,
+    primaryContainer = StudyMateAccentSoft,
+    onPrimaryContainer = StudyMateAccentHover,
+    secondary = StudyMateHighlight,
+    onSecondary = StudyMateInk,
+    secondaryContainer = StudyMateHighlightSoft,
+    background = StudyMateBg,
+    onBackground = StudyMateInk,
     surface = StudyMateSurface,
-    error = StudyMateError
-)
-
-private val DarkColors = darkColorScheme(
-    primary = StudyMatePurple,
-    onPrimary = StudyMateSurface,
-    primaryContainer = StudyMatePurpleDark,
-    error = StudyMateError
+    onSurface = StudyMateInk,
+    surfaceVariant = StudyMateBg,
+    onSurfaceVariant = StudyMateInkSoft,
+    outline = StudyMateBorder,
+    error = StudyMateDanger,
+    errorContainer = StudyMateDangerSoft,
+    onErrorContainer = StudyMateDanger
 )
 
 @Composable
 fun StudyMateTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val colorScheme = if (darkTheme) DarkColors else LightColors
     MaterialTheme(
-        colorScheme = colorScheme,
+        colorScheme = StudyMateColors,
         typography = StudyMateTypography,
         content = content
     )
