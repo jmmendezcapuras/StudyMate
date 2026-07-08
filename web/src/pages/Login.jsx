@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import api from "../api/axios";
+import { useAuth } from "../context/AuthContext";
 
 function Login() {
   const [form, setForm] = useState({ username: "", password: "" });
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -19,53 +22,69 @@ function Login() {
 
     try {
       const res = await api.post("/auth/login", form);
-      localStorage.setItem("user", JSON.stringify(res.data));
+      login(res.data);
       navigate("/dashboard");
     } catch (err) {
-      setError(err.response?.data || "Login failed. Please try again.");
+      setError(err.response?.data || "That username or password doesn't match our records.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "60px auto", fontFamily: "sans-serif" }}>
-      <h2>StudyMate Log In</h2>
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: "12px" }}>
-          <label>Username</label>
-          <input
-            type="text"
-            name="username"
-            value={form.username}
-            onChange={handleChange}
-            required
-            style={{ width: "100%", padding: "8px" }}
-          />
+    <div className="auth-shell">
+      <div className="auth-card">
+        <div className="wordmark">
+          <div className="wordmark-mark" />
+          <span className="wordmark-text">StudyMate</span>
         </div>
+        <p className="auth-subtitle">Log in to pick up where you left off.</p>
 
-        <div style={{ marginBottom: "12px" }}>
-          <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            value={form.password}
-            onChange={handleChange}
-            required
-            style={{ width: "100%", padding: "8px" }}
-          />
-        </div>
+        {error && <div className="error-banner">{error}</div>}
 
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        <form onSubmit={handleSubmit}>
+          <div className="field">
+            <label htmlFor="username">Username</label>
+            <input
+              id="username"
+              type="text"
+              name="username"
+              autoComplete="username"
+              value={form.username}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <button type="submit" disabled={loading} style={{ width: "100%", padding: "10px" }}>
-          {loading ? "Logging in..." : "Log In"}
-        </button>
-      </form>
+          <div className="field password-field">
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              type={showPassword ? "text" : "password"}
+              name="password"
+              autoComplete="current-password"
+              value={form.password}
+              onChange={handleChange}
+              required
+            />
+            <button
+              type="button"
+              className="password-toggle"
+              onClick={() => setShowPassword((v) => !v)}
+            >
+              {showPassword ? "Hide" : "Show"}
+            </button>
+          </div>
 
-      <p style={{ marginTop: "12px" }}>
-        Don't have an account? <Link to="/register">Register</Link>
-      </p>
+          <button type="submit" className="btn btn-primary" disabled={loading}>
+            {loading ? "Logging in…" : "Log In"}
+          </button>
+        </form>
+
+        <p className="auth-switch">
+          New to StudyMate? <Link to="/register">Create an account</Link>
+        </p>
+      </div>
     </div>
   );
 }

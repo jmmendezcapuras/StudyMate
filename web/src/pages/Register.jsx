@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import api from "../api/axios";
+import { useAuth } from "../context/AuthContext";
 
 function Register() {
   const [form, setForm] = useState({ username: "", password: "" });
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -15,11 +19,17 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    setLoading(true);
 
+    if (form.password !== confirmPassword) {
+      setError("Passwords don't match.");
+      return;
+    }
+
+    setLoading(true);
     try {
-      await api.post("/auth/register", form);
-      navigate("/login");
+      const res = await api.post("/auth/register", form);
+      login(res.data);
+      navigate("/dashboard");
     } catch (err) {
       setError(err.response?.data || "Registration failed. Please try again.");
     } finally {
@@ -28,43 +38,72 @@ function Register() {
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "60px auto", fontFamily: "sans-serif" }}>
-      <h2>Create a StudyMate Account</h2>
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: "12px" }}>
-          <label>Username</label>
-          <input
-            type="text"
-            name="username"
-            value={form.username}
-            onChange={handleChange}
-            required
-            style={{ width: "100%", padding: "8px" }}
-          />
+    <div className="auth-shell">
+      <div className="auth-card">
+        <div className="wordmark">
+          <div className="wordmark-mark" />
+          <span className="wordmark-text">StudyMate</span>
         </div>
+        <p className="auth-subtitle">Create an account to start tracking your subjects.</p>
 
-        <div style={{ marginBottom: "12px" }}>
-          <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            value={form.password}
-            onChange={handleChange}
-            required
-            style={{ width: "100%", padding: "8px" }}
-          />
-        </div>
+        {error && <div className="error-banner">{error}</div>}
 
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        <form onSubmit={handleSubmit}>
+          <div className="field">
+            <label htmlFor="username">Username</label>
+            <input
+              id="username"
+              type="text"
+              name="username"
+              autoComplete="username"
+              value={form.username}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <button type="submit" disabled={loading} style={{ width: "100%", padding: "10px" }}>
-          {loading ? "Creating account..." : "Register"}
-        </button>
-      </form>
+          <div className="field password-field">
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              type={showPassword ? "text" : "password"}
+              name="password"
+              autoComplete="new-password"
+              value={form.password}
+              onChange={handleChange}
+              required
+            />
+            <button
+              type="button"
+              className="password-toggle"
+              onClick={() => setShowPassword((v) => !v)}
+            >
+              {showPassword ? "Hide" : "Show"}
+            </button>
+          </div>
 
-      <p style={{ marginTop: "12px" }}>
-        Already have an account? <Link to="/login">Log in</Link>
-      </p>
+          <div className="field">
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <input
+              id="confirmPassword"
+              type={showPassword ? "text" : "password"}
+              name="confirmPassword"
+              autoComplete="new-password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+          </div>
+
+          <button type="submit" className="btn btn-primary" disabled={loading}>
+            {loading ? "Creating account…" : "Register"}
+          </button>
+        </form>
+
+        <p className="auth-switch">
+          Already have an account? <Link to="/login">Log in</Link>
+        </p>
+      </div>
     </div>
   );
 }
