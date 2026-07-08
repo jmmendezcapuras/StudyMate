@@ -1,6 +1,7 @@
 package edu.cit.capuras.studymate.model;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "subjects")
@@ -12,6 +13,7 @@ public class Subject {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
     private User user;
 
     @Column(nullable = false)
