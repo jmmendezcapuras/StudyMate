@@ -12,10 +12,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import edu.cit.capuras.studymate.mobile.network.SessionManager
-import edu.cit.capuras.studymate.mobile.ui.screens.DashboardScreen
-import edu.cit.capuras.studymate.mobile.ui.screens.LoginScreen
-import edu.cit.capuras.studymate.mobile.ui.screens.RegisterScreen
+import edu.cit.capuras.studymate.mobile.core.network.SessionManager
+import edu.cit.capuras.studymate.mobile.feature.auth.AuthViewModel
+import edu.cit.capuras.studymate.mobile.feature.subject.DashboardScreen
+import edu.cit.capuras.studymate.mobile.feature.auth.LoginScreen
+import edu.cit.capuras.studymate.mobile.feature.auth.RegisterScreen
+import edu.cit.capuras.studymate.mobile.feature.subject.SubjectViewModel
 import edu.cit.capuras.studymate.mobile.ui.theme.StudyMateTheme
 
 private object Routes {
@@ -29,7 +31,7 @@ private object Routes {
 class MainActivity : ComponentActivity() {
 
     private val authViewModel: AuthViewModel by viewModels()
-    private val dashboardViewModel: DashboardViewModel by viewModels()
+    private val dashboardViewModel: SubjectViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +49,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun StudyMateApp(authViewModel: AuthViewModel, dashboardViewModel: DashboardViewModel) {
+fun StudyMateApp(authViewModel: AuthViewModel, dashboardViewModel: SubjectViewModel) {
     val navController: NavHostController = rememberNavController()
     val context = androidx.compose.ui.platform.LocalContext.current
 
