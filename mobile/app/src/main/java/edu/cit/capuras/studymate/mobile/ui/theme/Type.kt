@@ -6,13 +6,6 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
-// Web uses "Fraunces" for headings, "Inter" for body copy, and
-// "IBM Plex Mono" for numeric/duration values. Custom font files aren't
-// bundled here to keep the module lightweight, so we approximate the same
-// hierarchy (serif display / sans body / monospace data) with system
-// font families — swap FontFamily.Serif / FontFamily.Default for the
-// actual Fraunces/Inter font resources later if pixel-perfect parity
-// with the web app is required.
 val DisplayFontFamily = FontFamily.Serif
 val BodyFontFamily = FontFamily.Default
 val MonoFontFamily = FontFamily.Monospace

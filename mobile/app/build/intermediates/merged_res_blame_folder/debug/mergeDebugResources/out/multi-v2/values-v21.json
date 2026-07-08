@@ -4,7 +4,7 @@
             "outputFile": "edu.cit.capuras.studymate.mobile.app-mergeDebugResources-49:/values-v21/values-v21.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\User\\.gradle\\caches\\8.14.5\\transforms\\7d9f4744d80a64296c4ed36643ecdf0f\\transformed\\core-1.13.1\\res\\values-v21\\values-v21.xml",
+                    "source": "C:\\Users\\l22x16w05\\.gradle\\caches\\transforms-3\\2bedb3798792c08f2d3e8331d22b160d\\transformed\\core-1.13.0\\res\\values-v21\\values-v21.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,13",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",

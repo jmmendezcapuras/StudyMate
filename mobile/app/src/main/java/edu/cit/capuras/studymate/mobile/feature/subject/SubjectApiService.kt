@@ -6,9 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
 
-/**
- * Talks to the SubjectController endpoints under /api/subjects/.
- */
 interface SubjectApiService {
 
     @GET("subjects")

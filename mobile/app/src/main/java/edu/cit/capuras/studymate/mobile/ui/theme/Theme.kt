@@ -4,9 +4,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 
-// A single light color scheme, matching the web app's palette exactly.
-// (StudyMate's web client doesn't offer a dark mode either, so mobile
-// stays consistent with one theme for now.)
 private val StudyMateColors = lightColorScheme(
     primary = StudyMateAccent,
     onPrimary = StudyMateSurface,

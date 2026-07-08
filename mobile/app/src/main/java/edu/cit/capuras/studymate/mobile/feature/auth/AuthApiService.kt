@@ -4,9 +4,6 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
 
-/**
- * Talks to the StudyMate Spring Boot backend authentication endpoints.
- */
 interface AuthApiService {
 
     @POST("auth/register")

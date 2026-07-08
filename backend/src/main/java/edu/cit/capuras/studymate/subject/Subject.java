@@ -1,5 +1,6 @@
 package edu.cit.capuras.studymate.subject;
 
+import edu.cit.capuras.studymate.auth.User;
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

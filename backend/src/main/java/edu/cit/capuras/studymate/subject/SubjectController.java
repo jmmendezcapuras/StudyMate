@@ -12,10 +12,6 @@ public class SubjectController {
     @Autowired
     private SubjectService subjectService;
 
-    // NOTE: userId is passed as a request param for now since there is no JWT
-    // filter wired up yet. Replace with the authenticated principal once
-    // token-based auth is implemented.
-
     @PostMapping
     public ResponseEntity<?> addSubject(@RequestParam Long userId, @RequestBody SubjectRequest req) {
         try {

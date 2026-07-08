@@ -15,9 +15,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import edu.cit.capuras.studymate.mobile.ui.theme.*
 
-/**
- * Mobile counterpart of web/src/pages/Dashboard.jsx — Subject Management only.
- */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DashboardScreen(
