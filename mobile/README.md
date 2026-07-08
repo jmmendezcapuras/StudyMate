@@ -10,7 +10,19 @@ the Spring Boot backend in `../backend` over REST (Retrofit) using the same
 ## Screens
 - **LoginScreen** — username/password, calls `POST /api/auth/login`
 - **RegisterScreen** — username/password/confirm, calls `POST /api/auth/register`
-- **DashboardScreen** — placeholder post-login screen (subjects/sessions come in a later assignment)
+- **DashboardScreen** — simplified mobile port of `web/src/pages/Dashboard.jsx`:
+  add/view subjects — same teal/paper color palette and card-based styling
+  as the web app.
+
+## Design parity with the web app
+`ui/theme/Color.kt` mirrors the CSS custom properties in `web/src/index.css`
+exactly (`--accent: #10665A`, `--bg: #F4F6F5`, etc.), and `colorForSubject()`
+uses the same palette/ordering as the web client's `colorForSubject()` in
+`Dashboard.jsx`, so a given subject shows the same accent color on both
+platforms. Typography follows the same display/body/mono hierarchy as the
+web app (Fraunces-style serif headings, sans body text, monospace durations),
+using system font families to keep the module dependency-free — swap in the
+actual Fraunces/Inter font files later for pixel-perfect parity if needed.
 
 ## Running it
 

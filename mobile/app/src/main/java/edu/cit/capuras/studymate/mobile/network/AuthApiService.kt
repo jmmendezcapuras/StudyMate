@@ -8,8 +8,7 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 /**
- * Talks to the StudyMate Spring Boot backend's auth endpoints
- * (edu.cit.capuras.studymate.controller.AuthController).
+ * Talks to the StudyMate Spring Boot backend authentication endpoints.
  */
 interface AuthApiService {
 
