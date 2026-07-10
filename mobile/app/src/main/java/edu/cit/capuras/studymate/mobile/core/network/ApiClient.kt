@@ -1,6 +1,7 @@
 package edu.cit.capuras.studymate.mobile.core.network
 
 import edu.cit.capuras.studymate.mobile.feature.auth.AuthApiService
+import edu.cit.capuras.studymate.mobile.feature.session.SessionApiService
 import edu.cit.capuras.studymate.mobile.feature.subject.SubjectApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -30,4 +31,5 @@ object ApiClient {
 
     val authApi: AuthApiService = retrofit.create(AuthApiService::class.java)
     val subjectApi: SubjectApiService = retrofit.create(SubjectApiService::class.java)
+    val sessionApi: SessionApiService = retrofit.create(SessionApiService::class.java)
 }

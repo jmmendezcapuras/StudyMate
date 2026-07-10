@@ -3,6 +3,8 @@ package edu.cit.capuras.studymate.mobile.feature.subject
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Logout
@@ -13,6 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import edu.cit.capuras.studymate.mobile.feature.session.SessionViewModel
+import edu.cit.capuras.studymate.mobile.feature.session.SessionsPanel
 import edu.cit.capuras.studymate.mobile.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -21,6 +25,7 @@ fun DashboardScreen(
     userId: Long,
     username: String,
     viewModel: SubjectViewModel,
+    sessionViewModel: SessionViewModel,
     onLogout: () -> Unit
 ) {
     LaunchedEffect(userId) {
@@ -60,6 +65,7 @@ fun DashboardScreen(
                 .fillMaxSize()
                 .padding(padding)
                 .padding(horizontal = 16.dp)
+                .verticalScroll(rememberScrollState())
         ) {
             GreetingBlock(username)
             Spacer(modifier = Modifier.height(20.dp))
@@ -70,6 +76,9 @@ fun DashboardScreen(
             }
 
             SubjectsPanel(userId = userId, viewModel = viewModel)
+            Spacer(modifier = Modifier.height(20.dp))
+            SessionsPanel(userId = userId, subjects = viewModel.subjects, viewModel = sessionViewModel)
+            Spacer(modifier = Modifier.height(20.dp))
         }
     }
 }

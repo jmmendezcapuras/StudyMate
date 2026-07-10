@@ -14,6 +14,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import edu.cit.capuras.studymate.mobile.core.network.SessionManager
 import edu.cit.capuras.studymate.mobile.feature.auth.AuthViewModel
+import edu.cit.capuras.studymate.mobile.feature.session.SessionViewModel
 import edu.cit.capuras.studymate.mobile.feature.subject.DashboardScreen
 import edu.cit.capuras.studymate.mobile.feature.auth.LoginScreen
 import edu.cit.capuras.studymate.mobile.feature.auth.RegisterScreen
@@ -32,6 +33,7 @@ class MainActivity : ComponentActivity() {
 
     private val authViewModel: AuthViewModel by viewModels()
     private val dashboardViewModel: SubjectViewModel by viewModels()
+    private val sessionViewModel: SessionViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +42,8 @@ class MainActivity : ComponentActivity() {
                 Surface(modifier = Modifier.fillMaxSize()) {
                     StudyMateApp(
                         authViewModel = authViewModel,
-                        dashboardViewModel = dashboardViewModel
+                        dashboardViewModel = dashboardViewModel,
+                        sessionViewModel = sessionViewModel
                     )
                 }
             }
@@ -49,7 +52,11 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun StudyMateApp(authViewModel: AuthViewModel, dashboardViewModel: SubjectViewModel) {
+fun StudyMateApp(
+    authViewModel: AuthViewModel,
+    dashboardViewModel: SubjectViewModel,
+    sessionViewModel: SessionViewModel
+) {
     val navController: NavHostController = rememberNavController()
     val context = androidx.compose.ui.platform.LocalContext.current
 
@@ -94,6 +101,7 @@ fun StudyMateApp(authViewModel: AuthViewModel, dashboardViewModel: SubjectViewMo
                 userId = userId,
                 username = username,
                 viewModel = dashboardViewModel,
+                sessionViewModel = sessionViewModel,
                 onLogout = {
                     SessionManager.clearSession(context)
                     navController.navigate(Routes.LOGIN) {
