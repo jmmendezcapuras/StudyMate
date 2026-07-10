@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
 import { fetchSubjects, createSubject } from "./subjects.api";
+import SessionsPanel from "../sessions/SessionsPanel";
 
 const SUBJECT_COLORS = ["#10665A", "#F2A93B", "#3454D1", "#C1443B", "#7A5AF8", "#0E9488"];
 
@@ -120,6 +121,8 @@ function Dashboard() {
             ))}
           </div>
         </div>
+
+        <SessionsPanel userId={user.id} subjects={subjects} />
       </main>
     </div>
   );
