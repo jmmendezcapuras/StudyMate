@@ -6,6 +6,7 @@ import edu.cit.capuras.studymate.subject.Subject;
 import edu.cit.capuras.studymate.subject.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class StudySessionService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
+    @Transactional
     public StudySession addSession(Long userId, StudySessionRequest req) {
         User user = getUser(userId);
 
@@ -71,6 +73,7 @@ public class StudySessionService {
         return studySessionRepository.findByUserOrderBySessionDateDesc(user);
     }
 
+    @Transactional
     public void deleteSession(Long userId, Long sessionId) {
         User user = getUser(userId);
 
