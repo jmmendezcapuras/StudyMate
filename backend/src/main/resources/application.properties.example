@@ -1,8 +1,25 @@
 spring.application.name=studymate
 
-spring.datasource.url=jdbc:postgresql://aws-1-ap-southeast-1.pooler.supabase.com:6543/postgres
+spring.datasource.url=jdbc:postgresql://aws-1-ap-southeast-1.pooler.supabase.com:6543/postgres?prepareThreshold=0
 spring.datasource.username=postgres.ytiyhsjvuumlubrdccnp
 spring.datasource.password=studymateplanner
 
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+
+# Supabase's transaction-mode pooler (port 6543) swaps the underlying
+# physical connection between transactions, which breaks the JDBC
+# driver's cached server-side prepared statements (causes
+# 'prepared statement "S_n" already exists' and cascading
+# rollback-only/bad-SQL-grammar errors under concurrent sessions).
+# prepareThreshold=0 above disables server-side prepare; capping the
+# pool size keeps us well under the pooler's connection limit.
+spring.datasource.hikari.maximum-pool-size=5
+spring.datasource.hikari.connection-timeout=20000
+
+# JWT signing secret and token lifetime (NFR-006). Override via env var in
+# production; a default is provided so the app still runs out of the box
+# for local grading/testing.
+studymate.jwt.secret=studymate-super-secret-key-for-jwt-signing-please-change-me
+studymate.jwt.expiration-ms=86400000
