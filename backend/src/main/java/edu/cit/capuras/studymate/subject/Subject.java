@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "subjects")
+@Table(name = "subjects", uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "name"}))
 public class Subject {
 
     @Id
