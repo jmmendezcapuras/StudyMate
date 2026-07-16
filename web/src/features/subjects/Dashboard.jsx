@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
 import { fetchSubjects, createSubject } from "./subjects.api";
+import { logoutUser } from "../auth/auth.api";
 import SessionsPanel from "../sessions/SessionsPanel";
 
 const SUBJECT_COLORS = ["#10665A", "#F2A93B", "#3454D1", "#C1443B", "#7A5AF8", "#0E9488"];
@@ -28,7 +29,11 @@ function Dashboard() {
       const res = await fetchSubjects(user.id);
       setSubjects(res.data);
     } catch (err) {
-      setLoadError("Couldn't reach the StudyMate server. Is the backend running?");
+      if (err.response) {
+        setLoadError(err.response.data?.error || err.response.data || `Request failed (${err.response.status}).`);
+      } else {
+        setLoadError("Couldn't reach the StudyMate server. Is the backend running?");
+      }
     } finally {
       setLoadingData(false);
     }
@@ -59,7 +64,15 @@ function Dashboard() {
     }
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    // FR-003: revoke the JWT server-side (best effort) so it can't be
+    // replayed against protected endpoints, then clear local session state.
+    try {
+      await logoutUser();
+    } catch (err) {
+      // Non-fatal: token may already be expired/revoked. Proceed with
+      // client-side logout regardless.
+    }
     logout();
     navigate("/login");
   };
