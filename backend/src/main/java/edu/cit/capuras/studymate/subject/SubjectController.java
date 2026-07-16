@@ -1,5 +1,6 @@
 package edu.cit.capuras.studymate.subject;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,8 +13,23 @@ public class SubjectController {
     @Autowired
     private SubjectService subjectService;
 
+    // FR-011 / BR-003: the JWT identifies who is actually making the call.
+    // If the caller's token belongs to a different account than the userId
+    // they're asking to act on, the request is rejected before it ever
+    // reaches the service/repository layer.
+    private ResponseEntity<?> checkOwnership(HttpServletRequest request, Long userId) {
+        Object authUserId = request.getAttribute("authUserId");
+        if (authUserId == null || !authUserId.equals(userId)) {
+            return ResponseEntity.status(403).body("Access denied: you may only access your own subjects");
+        }
+        return null;
+    }
+
     @PostMapping
-    public ResponseEntity<?> addSubject(@RequestParam Long userId, @RequestBody SubjectRequest req) {
+    public ResponseEntity<?> addSubject(HttpServletRequest request, @RequestParam Long userId, @RequestBody SubjectRequest req) {
+        ResponseEntity<?> denied = checkOwnership(request, userId);
+        if (denied != null) return denied;
+
         try {
             return ResponseEntity.ok(subjectService.addSubject(userId, req));
         } catch (RuntimeException e) {
@@ -22,7 +38,10 @@ public class SubjectController {
     }
 
     @GetMapping
-    public ResponseEntity<?> getSubjects(@RequestParam Long userId) {
+    public ResponseEntity<?> getSubjects(HttpServletRequest request, @RequestParam Long userId) {
+        ResponseEntity<?> denied = checkOwnership(request, userId);
+        if (denied != null) return denied;
+
         try {
             return ResponseEntity.ok(subjectService.getSubjects(userId));
         } catch (RuntimeException e) {
