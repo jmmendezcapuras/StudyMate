@@ -32,7 +32,15 @@ function SessionsPanel({ userId, subjects }) {
       const res = await fetchSessions(userId);
       setSessions(res.data);
     } catch (err) {
-      setLoadError("Couldn't reach the StudyMate server. Is the backend running?");
+      // err.response means the backend actually replied (e.g. a transient
+      // 500 from a DB error, or a 401/403) — show that, not a false
+      // "can't reach the server" message. Only a missing response (network
+      // failure, backend genuinely down, CORS block) should say that.
+      if (err.response) {
+        setLoadError(err.response.data?.error || err.response.data || `Request failed (${err.response.status}).`);
+      } else {
+        setLoadError("Couldn't reach the StudyMate server. Is the backend running?");
+      }
     } finally {
       setLoadingData(false);
     }
