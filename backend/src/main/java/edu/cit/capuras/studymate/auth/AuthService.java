@@ -11,9 +11,23 @@ public class AuthService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private JwtUtil jwtUtil;
+
+    @Autowired
+    private TokenBlacklist tokenBlacklist;
+
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public AuthResponse register(RegisterRequest req) {
+        if (req.getUsername() == null || req.getUsername().isBlank()) {
+            throw new RuntimeException("Username is required");
+        }
+        if (req.getPassword() == null || req.getPassword().isBlank()) {
+            throw new RuntimeException("Password is required");
+        }
+
+        // BR-001: duplicate usernames are not allowed.
         if (userRepository.existsByUsername(req.getUsername())) {
             throw new RuntimeException("Username already registered");
         }
@@ -24,7 +38,8 @@ public class AuthService {
 
         userRepository.save(user);
 
-        return new AuthResponse(user.getId(), user.getUsername());
+        String token = jwtUtil.generateToken(user.getId(), user.getUsername());
+        return new AuthResponse(user.getId(), user.getUsername(), token);
     }
 
     public AuthResponse login(LoginRequest req) {
@@ -35,6 +50,18 @@ public class AuthService {
             throw new RuntimeException("Invalid credentials");
         }
 
-        return new AuthResponse(user.getId(), user.getUsername());
+        String token = jwtUtil.generateToken(user.getId(), user.getUsername());
+        return new AuthResponse(user.getId(), user.getUsername(), token);
+    }
+
+    /**
+     * FR-003 / BR-008: invalidate the caller's JWT so it can no longer be
+     * used to access protected endpoints, even though it hasn't expired yet.
+     */
+    public void logout(String token) {
+        if (token == null || token.isBlank()) {
+            throw new RuntimeException("No active session token provided");
+        }
+        tokenBlacklist.revoke(token);
     }
 }
