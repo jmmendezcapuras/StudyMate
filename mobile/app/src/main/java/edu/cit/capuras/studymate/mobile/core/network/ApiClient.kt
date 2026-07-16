@@ -17,7 +17,23 @@ object ApiClient {
         level = HttpLoggingInterceptor.Level.BODY
     }
 
+    // Attaches the current session's JWT to every request so the backend's
+    // JwtAuthFilter can authenticate the caller (NFR-006 / BR-008).
+    private val authInterceptor = okhttp3.Interceptor { chain ->
+        val original = chain.request()
+        val token = TokenProvider.token
+        val request = if (token != null) {
+            original.newBuilder()
+                .addHeader("Authorization", "Bearer $token")
+                .build()
+        } else {
+            original
+        }
+        chain.proceed(request)
+    }
+
     private val okHttpClient = OkHttpClient.Builder()
+        .addInterceptor(authInterceptor)
         .addInterceptor(loggingInterceptor)
         .connectTimeout(15, TimeUnit.SECONDS)
         .readTimeout(15, TimeUnit.SECONDS)

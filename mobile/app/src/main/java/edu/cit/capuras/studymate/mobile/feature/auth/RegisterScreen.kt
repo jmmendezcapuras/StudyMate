@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun RegisterScreen(
     viewModel: AuthViewModel,
-    onRegisterSuccess: (Long, String) -> Unit,
+    onRegisterSuccess: (Long, String, String) -> Unit,
     onNavigateToLogin: () -> Unit
 ) {
     var username by remember { mutableStateOf("") }
@@ -32,7 +32,7 @@ fun RegisterScreen(
 
     LaunchedEffect(state) {
         if (state is AuthUiState.Success) {
-            onRegisterSuccess(state.response.id, state.response.username)
+            onRegisterSuccess(state.response.id, state.response.username, state.response.token)
             viewModel.resetState()
         }
     }

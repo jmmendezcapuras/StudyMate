@@ -20,6 +20,7 @@ import edu.cit.capuras.studymate.mobile.feature.auth.LoginScreen
 import edu.cit.capuras.studymate.mobile.feature.auth.RegisterScreen
 import edu.cit.capuras.studymate.mobile.feature.subject.SubjectViewModel
 import edu.cit.capuras.studymate.mobile.ui.theme.StudyMateTheme
+import kotlinx.coroutines.launch
 
 private object Routes {
     const val LOGIN = "login"
@@ -37,6 +38,9 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Restore the JWT into memory on process start so ApiClient's
+        // interceptor can attach it to requests after an app restart.
+        SessionManager.restoreTokenIntoMemory(this)
         setContent {
             StudyMateTheme {
                 Surface(modifier = Modifier.fillMaxSize()) {
@@ -71,8 +75,8 @@ fun StudyMateApp(
         composable(Routes.LOGIN) {
             LoginScreen(
                 viewModel = authViewModel,
-                onLoginSuccess = { id, username ->
-                    SessionManager.saveSession(context, id, username)
+                onLoginSuccess = { id, username, token ->
+                    SessionManager.saveSession(context, id, username, token)
                     navController.navigate(Routes.dashboard(id, username)) {
                         popUpTo(Routes.LOGIN) { inclusive = true }
                     }
@@ -84,8 +88,8 @@ fun StudyMateApp(
         composable(Routes.REGISTER) {
             RegisterScreen(
                 viewModel = authViewModel,
-                onRegisterSuccess = { id, username ->
-                    SessionManager.saveSession(context, id, username)
+                onRegisterSuccess = { id, username, token ->
+                    SessionManager.saveSession(context, id, username, token)
                     navController.navigate(Routes.dashboard(id, username)) {
                         popUpTo(Routes.LOGIN) { inclusive = true }
                     }
@@ -97,15 +101,25 @@ fun StudyMateApp(
         composable(Routes.DASHBOARD) { backStackEntry ->
             val userId = backStackEntry.arguments?.getString("userId")?.toLongOrNull() ?: -1L
             val username = backStackEntry.arguments?.getString("username") ?: ""
+            val coroutineScope = androidx.compose.runtime.rememberCoroutineScope()
             DashboardScreen(
                 userId = userId,
                 username = username,
                 viewModel = dashboardViewModel,
                 sessionViewModel = sessionViewModel,
                 onLogout = {
-                    SessionManager.clearSession(context)
-                    navController.navigate(Routes.LOGIN) {
-                        popUpTo(0) { inclusive = true }
+                    // FR-003: best-effort server-side token revocation, then
+                    // always clear local session state regardless of outcome.
+                    coroutineScope.launch {
+                        try {
+                            edu.cit.capuras.studymate.mobile.core.network.ApiClient.authApi.logout()
+                        } catch (e: Exception) {
+                            // Ignore: token may already be expired; proceed with local logout.
+                        }
+                        SessionManager.clearSession(context)
+                        navController.navigate(Routes.LOGIN) {
+                            popUpTo(0) { inclusive = true }
+                        }
                     }
                 }
             )
