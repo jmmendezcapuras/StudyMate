@@ -52,10 +52,15 @@ function SessionsPanel({ userId, subjects }) {
   }, [userId]);
 
   useEffect(() => {
-    if (!subjectId && subjects.length > 0) {
-      setSubjectId(String(subjects[0].id));
-    }
-  }, [subjects, subjectId]);
+  if (subjects.length === 0) {
+    setSubjectId("");
+    return;
+  }
+  const stillExists = subjects.some((s) => String(s.id) === subjectId);
+  if (!stillExists) {
+    setSubjectId(String(subjects[0].id));
+  }
+}, [subjects, subjectId]);
 
   const handleAddSession = async (e) => {
     e.preventDefault();
