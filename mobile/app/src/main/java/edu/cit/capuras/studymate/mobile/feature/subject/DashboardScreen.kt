@@ -7,6 +7,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Logout
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -150,14 +151,20 @@ private fun SubjectsPanel(userId: Long, viewModel: SubjectViewModel) {
             )
         } else {
             Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                viewModel.subjects.forEach { subject -> SubjectChip(subject) }
+                viewModel.subjects.forEach { subject ->
+                    SubjectChip(
+                        subject = subject,
+                        isDeleting = viewModel.deletingSubjectId == subject.id,
+                        onDelete = { viewModel.deleteSubject(userId, subject.id) }
+                    )
+                }
             }
         }
     }
 }
 
 @Composable
-private fun SubjectChip(subject: SubjectResponse) {
+private fun SubjectChip(subject: SubjectResponse, isDeleting: Boolean, onDelete: () -> Unit) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
@@ -173,7 +180,20 @@ private fun SubjectChip(subject: SubjectResponse) {
                 .background(colorForSubject(subject.id))
         )
         Spacer(modifier = Modifier.width(10.dp))
-        Text(subject.name, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Medium)
+        Text(
+            subject.name,
+            style = MaterialTheme.typography.bodyMedium,
+            fontWeight = FontWeight.Medium,
+            modifier = Modifier.weight(1f)
+        )
+        IconButton(onClick = onDelete, enabled = !isDeleting, modifier = Modifier.size(28.dp)) {
+            Icon(
+                imageVector = Icons.Filled.Close,
+                contentDescription = "Delete ${subject.name}",
+                tint = StudyMateInkFaint,
+                modifier = Modifier.size(16.dp)
+            )
+        }
     }
 }
 

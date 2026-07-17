@@ -25,6 +25,9 @@ class SubjectViewModel : ViewModel() {
     var isAddingSubject by mutableStateOf(false)
         private set
 
+    var deletingSubjectId by mutableStateOf<Long?>(null)
+        private set
+
     fun loadData(userId: Long) {
         isLoading = true
         loadError = null
@@ -67,6 +70,27 @@ class SubjectViewModel : ViewModel() {
                 subjectActionError = e.message ?: "Couldn't add that subject."
             } finally {
                 isAddingSubject = false
+            }
+        }
+    }
+
+    fun deleteSubject(userId: Long, subjectId: Long) {
+        subjectActionError = null
+        deletingSubjectId = subjectId
+        viewModelScope.launch {
+            try {
+                val response = ApiClient.subjectApi.deleteSubject(subjectId, userId)
+                if (response.isSuccessful) {
+                    subjects = subjects.filter { it.id != subjectId }
+                } else {
+                    // Most common case: backend blocks deletion because
+                    // sessions still reference this subject.
+                    subjectActionError = response.errorBody()?.string() ?: "Couldn't delete that subject."
+                }
+            } catch (e: Exception) {
+                subjectActionError = e.message ?: "Couldn't delete that subject."
+            } finally {
+                deletingSubjectId = null
             }
         }
     }
