@@ -14,9 +14,17 @@ public class User {
     @Column(unique = true, nullable = false)
     private String username;
 
+    @Column(unique = true, nullable = false)
+    private String email;
+
     @Column(nullable = false)
     @JsonIgnore
     private String password;
+
+    // "STUDENT" (default, self-registered) or "ADMIN" (seeded on startup,
+    // see AdminSeeder — there is no public admin-registration endpoint).
+    @Column(nullable = false)
+    private String role = "STUDENT";
 
     public Long getId() {
         return id;
@@ -34,11 +42,27 @@ public class User {
         this.username = username;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
