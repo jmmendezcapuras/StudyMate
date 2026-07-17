@@ -23,3 +23,10 @@ spring.datasource.hikari.connection-timeout=20000
 # for local grading/testing.
 studymate.jwt.secret=studymate-super-secret-key-for-jwt-signing-please-change-me
 studymate.jwt.expiration-ms=86400000
+
+# Seeded admin account (created on startup if it doesn't exist yet — see
+# AdminSeeder). Change the password before any real deployment; this file
+# is gitignored so these values never reach source control.
+studymate.admin.username=admin
+studymate.admin.email=admin@studymate.local
+studymate.admin.password=ChangeMe123!
