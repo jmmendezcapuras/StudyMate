@@ -30,13 +30,14 @@ public class JwtUtil {
         return Keys.hmacShaKeyFor(secret.getBytes());
     }
 
-    public String generateToken(Long userId, String username) {
+    public String generateToken(Long userId, String username, String role) {
         Date now = new Date();
         Date expiry = new Date(now.getTime() + expirationMs);
 
         return Jwts.builder()
                 .subject(String.valueOf(userId))
                 .claim("username", username)
+                .claim("role", role)
                 .issuedAt(now)
                 .expiration(expiry)
                 .signWith(signingKey())
@@ -48,22 +49,24 @@ public class JwtUtil {
      * Throws JwtException (or a subclass) if the token is invalid/expired.
      */
     public Long validateAndGetUserId(String token) {
-        Claims claims = Jwts.parser()
-                .verifyWith(signingKey())
-                .build()
-                .parseSignedClaims(token)
-                .getPayload();
-
-        return Long.parseLong(claims.getSubject());
+        String subject = parseClaims(token).getSubject();
+        return subject == null ? null : Long.parseLong(subject);
     }
 
     public String getUsername(String token) {
-        Claims claims = Jwts.parser()
+        return parseClaims(token).get("username", String.class);
+    }
+
+    /** Used by JwtAuthFilter to grant ROLE_ADMIN/ROLE_STUDENT authorities. */
+    public String getRole(String token) {
+        return parseClaims(token).get("role", String.class);
+    }
+
+    private Claims parseClaims(String token) {
+        return Jwts.parser()
                 .verifyWith(signingKey())
                 .build()
                 .parseSignedClaims(token)
                 .getPayload();
-
-        return claims.get("username", String.class);
     }
 }
