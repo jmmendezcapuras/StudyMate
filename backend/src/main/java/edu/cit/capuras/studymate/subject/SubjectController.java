@@ -48,4 +48,17 @@ public class SubjectController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteSubject(HttpServletRequest request, @PathVariable Long id, @RequestParam Long userId) {
+        ResponseEntity<?> denied = checkOwnership(request, userId);
+        if (denied != null) return denied;
+
+        try {
+            subjectService.deleteSubject(userId, id);
+            return ResponseEntity.noContent().build();
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }
