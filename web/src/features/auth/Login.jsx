@@ -23,7 +23,7 @@ function Login() {
     try {
       const res = await api.post("/auth/login", form);
       login(res.data);
-      navigate("/dashboard");
+      navigate(res.data.role === "ADMIN" ? "/admin" : "/dashboard");
     } catch (err) {
       setError(err.response?.data || "That username or password doesn't match our records.");
     } finally {
