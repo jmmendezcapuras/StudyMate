@@ -7,3 +7,7 @@ export function fetchSubjects(userId) {
 export function createSubject(userId, name) {
   return api.post("/subjects", { name }, { params: { userId } });
 }
+
+export function deleteSubject(userId, subjectId) {
+  return api.delete(`/subjects/${subjectId}`, { params: { userId } });
+}

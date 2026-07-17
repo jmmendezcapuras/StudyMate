@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
-import { fetchSubjects, createSubject } from "./subjects.api";
+import { fetchSubjects, createSubject, deleteSubject } from "./subjects.api";
 import { logoutUser } from "../auth/auth.api";
 import SessionsPanel from "../sessions/SessionsPanel";
 
@@ -22,6 +22,7 @@ function Dashboard() {
   const [newSubject, setNewSubject] = useState("");
   const [subjectError, setSubjectError] = useState("");
   const [addingSubject, setAddingSubject] = useState(false);
+  const [deletingId, setDeletingId] = useState(null);
 
   const loadData = async () => {
     setLoadError("");
@@ -61,6 +62,21 @@ function Dashboard() {
       setSubjectError(err.response?.data || "Couldn't add that subject.");
     } finally {
       setAddingSubject(false);
+    }
+  };
+
+  const handleDeleteSubject = async (subjectId) => {
+    setSubjectError("");
+    setDeletingId(subjectId);
+    try {
+      await deleteSubject(user.id, subjectId);
+      setSubjects((prev) => prev.filter((s) => s.id !== subjectId));
+    } catch (err) {
+      // Most common case: backend blocks deletion because sessions still
+      // reference this subject — surface that message directly.
+      setSubjectError(err.response?.data || "Couldn't delete that subject.");
+    } finally {
+      setDeletingId(null);
     }
   };
 
@@ -130,6 +146,15 @@ function Dashboard() {
               <div className="subject-chip" key={s.id}>
                 <span className="subject-dot" style={{ background: colorForSubject(s.id) }} />
                 {s.name}
+                <button
+                  type="button"
+                  className="subject-delete-btn"
+                  aria-label={`Delete ${s.name}`}
+                  disabled={deletingId === s.id}
+                  onClick={() => handleDeleteSubject(s.id)}
+                >
+                  {deletingId === s.id ? "…" : "✕"}
+                </button>
               </div>
             ))}
           </div>
