@@ -20,16 +20,16 @@ class AuthViewModel : ViewModel() {
     var uiState by mutableStateOf<AuthUiState>(AuthUiState.Idle)
         private set
 
-    fun register(username: String, password: String) {
-        if (username.isBlank() || password.isBlank()) {
-            uiState = AuthUiState.Error("Username and password are required")
+    fun register(username: String, email: String, password: String) {
+        if (username.isBlank() || email.isBlank() || password.isBlank()) {
+            uiState = AuthUiState.Error("Username, email, and password are required")
             return
         }
 
         uiState = AuthUiState.Loading
         viewModelScope.launch {
             try {
-                val response = ApiClient.authApi.register(RegisterRequest(username, password))
+                val response = ApiClient.authApi.register(RegisterRequest(username, email, password))
                 if (response.isSuccessful && response.body() != null) {
                     uiState = AuthUiState.Success(response.body()!!)
                 } else {

@@ -2,6 +2,7 @@ package edu.cit.capuras.studymate.mobile.feature.auth
 
 data class RegisterRequest(
     val username: String,
+    val email: String,
     val password: String
 )
 
@@ -13,5 +14,6 @@ data class LoginRequest(
 data class AuthResponse(
     val id: Long,
     val username: String,
+    val email: String,
     val token: String
 )

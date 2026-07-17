@@ -23,6 +23,7 @@ fun RegisterScreen(
     onNavigateToLogin: () -> Unit
 ) {
     var username by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
@@ -62,6 +63,17 @@ fun RegisterScreen(
                 label = { Text("Username") },
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            OutlinedTextField(
+                value = email,
+                onValueChange = { email = it; localError = null },
+                label = { Text("Email") },
+                singleLine = true,
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
                 modifier = Modifier.fillMaxWidth()
             )
 
@@ -114,7 +126,7 @@ fun RegisterScreen(
                     if (password != confirmPassword) {
                         localError = "Passwords do not match"
                     } else {
-                        viewModel.register(username.trim(), password)
+                        viewModel.register(username.trim(), email.trim(), password)
                     }
                 },
                 enabled = state !is AuthUiState.Loading,
