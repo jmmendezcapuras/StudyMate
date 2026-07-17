@@ -4,7 +4,7 @@ import api from "../../core/api/axios";
 import { useAuth } from "./AuthContext";
 
 function Register() {
-  const [form, setForm] = useState({ username: "", password: "" });
+  const [form, setForm] = useState({ username: "", email: "", password: "" });
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
@@ -57,6 +57,19 @@ function Register() {
               name="username"
               autoComplete="username"
               value={form.username}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="field">
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              autoComplete="email"
+              value={form.email}
               onChange={handleChange}
               required
             />
