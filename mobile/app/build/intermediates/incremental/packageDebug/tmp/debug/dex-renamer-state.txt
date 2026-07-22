@@ -1,4 +1,4 @@
-#Wed Jul 22 15:44:41 SGT 2026
+#Wed Jul 22 15:58:45 SGT 2026
 base.0=C\:\\Users\\l22x16w05\\Desktop\\GitCloneMain\\StudyMate\\mobile\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Users\\l22x16w05\\Desktop\\GitCloneMain\\StudyMate\\mobile\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 base.10=C\:\\Users\\l22x16w05\\Desktop\\GitCloneMain\\StudyMate\\mobile\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\7\\classes.dex

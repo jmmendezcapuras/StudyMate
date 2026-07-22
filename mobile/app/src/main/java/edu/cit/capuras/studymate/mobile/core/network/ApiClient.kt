@@ -12,7 +12,11 @@ import java.util.concurrent.TimeUnit
 
 object ApiClient {
 
-    private const val BASE_URL = "http://10.0.2.2:8080/api/"
+    // Render's free tier spins the backend down after inactivity; the first
+    // request after a cold start can take 30-50+ seconds while it wakes
+    // back up. 10.0.2.2 was the emulator-only alias for a locally running
+    // backend — replaced with the actual deployed backend URL.
+    private const val BASE_URL = "https://studymate-552b.onrender.com/api/"
 
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
@@ -36,8 +40,11 @@ object ApiClient {
     private val okHttpClient = OkHttpClient.Builder()
         .addInterceptor(authInterceptor)
         .addInterceptor(loggingInterceptor)
-        .connectTimeout(15, TimeUnit.SECONDS)
-        .readTimeout(15, TimeUnit.SECONDS)
+        // Long enough to survive a Render cold start rather than fail with
+        // a timeout on the very first request after idling.
+        .connectTimeout(60, TimeUnit.SECONDS)
+        .readTimeout(60, TimeUnit.SECONDS)
+        .writeTimeout(60, TimeUnit.SECONDS)
         .build()
 
     private val retrofit = Retrofit.Builder()
