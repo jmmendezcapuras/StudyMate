@@ -2924,6 +2924,23 @@
                     }
                 },
                 {
+                    "source": "C:\\Users\\l22x16w05\\Desktop\\GitCloneMain\\StudyMate\\mobile\\app\\src\\main\\res\\values\\colors.xml",
+                    "from": {
+                        "startLines": "4,1,2,3",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "167,17,69,126",
+                        "endColumns": "39,50,55,39",
+                        "endOffsets": "202,63,120,161"
+                    },
+                    "to": {
+                        "startLines": "5,10,11,12",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "370,673,724,780",
+                        "endColumns": "39,50,55,39",
+                        "endOffsets": "405,719,775,815"
+                    }
+                },
+                {
                     "source": "C:\\Users\\l22x16w05\\.gradle\\caches\\transforms-3\\84a3f230b2257975fa9be12f74308b2a\\transformed\\navigation-common-2.7.7\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,15,21,27,30",
@@ -2994,30 +3011,13 @@
                     }
                 },
                 {
-                    "source": "Z:\\L22X16W05\\Main\\StudyMate\\mobile\\app\\src\\main\\res\\values\\colors.xml",
-                    "from": {
-                        "startLines": "4,1,2,3",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "163,16,67,123",
-                        "endColumns": "39,50,55,39",
-                        "endOffsets": "198,62,118,158"
-                    },
-                    "to": {
-                        "startLines": "5,10,11,12",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "370,673,724,780",
-                        "endColumns": "39,50,55,39",
-                        "endOffsets": "405,719,775,815"
-                    }
-                },
-                {
-                    "source": "Z:\\L22X16W05\\Main\\StudyMate\\mobile\\app\\src\\main\\res\\values\\themes.xml",
+                    "source": "C:\\Users\\l22x16w05\\Desktop\\GitCloneMain\\StudyMate\\mobile\\app\\src\\main\\res\\values\\themes.xml",
                     "from": {
                         "startLines": "1",
                         "startColumns": "4",
-                        "startOffsets": "63",
+                        "startOffsets": "64",
                         "endColumns": "86",
-                        "endOffsets": "145"
+                        "endOffsets": "146"
                     },
                     "to": {
                         "startLines": "213",
@@ -3025,6 +3025,23 @@
                         "startOffsets": "13508",
                         "endColumns": "85",
                         "endOffsets": "13589"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\l22x16w05\\Desktop\\GitCloneMain\\StudyMate\\mobile\\app\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "1",
+                        "startColumns": "4",
+                        "startOffsets": "17",
+                        "endColumns": "46",
+                        "endOffsets": "59"
+                    },
+                    "to": {
+                        "startLines": "104",
+                        "startColumns": "4",
+                        "startOffsets": "6260",
+                        "endColumns": "46",
+                        "endOffsets": "6302"
                     }
                 },
                 {
@@ -3112,23 +3129,6 @@
                         "startOffsets": "6177",
                         "endColumns": "82",
                         "endOffsets": "6255"
-                    }
-                },
-                {
-                    "source": "Z:\\L22X16W05\\Main\\StudyMate\\mobile\\app\\src\\main\\res\\values\\strings.xml",
-                    "from": {
-                        "startLines": "1",
-                        "startColumns": "4",
-                        "startOffsets": "16",
-                        "endColumns": "46",
-                        "endOffsets": "58"
-                    },
-                    "to": {
-                        "startLines": "104",
-                        "startColumns": "4",
-                        "startOffsets": "6260",
-                        "endColumns": "46",
-                        "endOffsets": "6302"
                     }
                 }
             ]

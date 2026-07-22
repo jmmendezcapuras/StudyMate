@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:2:1-27:12
-INJECTED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:2:1-27:12
-INJECTED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:2:1-27:12
-INJECTED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:2:1-27:12
+ADDED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:2:1-27:12
+INJECTED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:2:1-27:12
 MERGED from [androidx.navigation:navigation-common:2.7.7] C:\Users\l22x16w05\.gradle\caches\transforms-3\84a3f230b2257975fa9be12f74308b2a\transformed\navigation-common-2.7.7\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-runtime:2.7.7] C:\Users\l22x16w05\.gradle\caches\transforms-3\a238fb6ae95b79806367a22f08f0bced\transformed\navigation-runtime-2.7.7\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-common-ktx:2.7.7] C:\Users\l22x16w05\.gradle\caches\transforms-3\c3a8e5b049cc865b526cd2094a49e383\transformed\navigation-common-ktx-2.7.7\AndroidManifest.xml:2:1-7:12
@@ -56,20 +56,20 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\l2
 MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\l22x16w05\.gradle\caches\transforms-3\8df2ee1f6ef8e1e605e512c6da268b83\transformed\core-runtime-2.2.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\l22x16w05\.gradle\caches\transforms-3\bb283ea22f971329d4317315b24a6b5a\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
 	package
-		INJECTED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml
 	android:versionName
-		INJECTED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml
 	android:versionCode
-		INJECTED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:2:11-69
+		ADDED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:2:11-69
 uses-permission#android.permission.INTERNET
-ADDED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:4:5-67
+ADDED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:4:5-67
 	android:name
-		ADDED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:4:22-64
+		ADDED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:4:22-64
 application
-ADDED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:6:5-25:19
-INJECTED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:6:5-25:19
+ADDED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:6:5-25:19
+INJECTED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:6:5-25:19
 MERGED from [androidx.compose.ui:ui-tooling-android:1.6.1] C:\Users\l22x16w05\.gradle\caches\transforms-3\d374e1ecb92a91e8a12fd97a5d9bf394\transformed\ui-tooling-release\AndroidManifest.xml:22:5-26:19
 MERGED from [androidx.compose.ui:ui-tooling-android:1.6.1] C:\Users\l22x16w05\.gradle\caches\transforms-3\d374e1ecb92a91e8a12fd97a5d9bf394\transformed\ui-tooling-release\AndroidManifest.xml:22:5-26:19
 MERGED from [androidx.compose.ui:ui-test-manifest:1.6.1] C:\Users\l22x16w05\.gradle\caches\transforms-3\5007f95830145def1ed3db992c3a6f81\transformed\ui-test-manifest-1.6.1\AndroidManifest.xml:22:5-26:19
@@ -87,47 +87,47 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\l22x16w05\.gradle\
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\l22x16w05\.gradle\caches\transforms-3\919742180d82233236fed0a4b7895dfb\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\l22x16w05\.gradle\caches\transforms-3\919742180d82233236fed0a4b7895dfb\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
 	android:extractNativeLibs
-		INJECTED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.13.0] C:\Users\l22x16w05\.gradle\caches\transforms-3\2bedb3798792c08f2d3e8331d22b160d\transformed\core-1.13.0\AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:11:9-35
+		ADDED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:11:9-35
 	android:label
-		ADDED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:9:9-41
+		ADDED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:9:9-41
 	android:roundIcon
-		ADDED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:10:9-48
+		ADDED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:10:9-48
 	android:icon
-		ADDED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:8:9-43
+		ADDED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:8:9-43
 	android:allowBackup
-		ADDED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:7:9-35
+		ADDED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:7:9-35
 	android:theme
-		ADDED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:13:9-47
+		ADDED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:13:9-47
 	android:networkSecurityConfig
-		ADDED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:14:9-69
+		ADDED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:14:9-69
 	android:usesCleartextTraffic
-		ADDED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:12:9-44
+		ADDED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:12:9-44
 activity#edu.cit.capuras.studymate.mobile.MainActivity
-ADDED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:16:9-24:20
+ADDED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:16:9-24:20
 	android:exported
-		ADDED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:18:13-36
+		ADDED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:18:13-36
 	android:theme
-		ADDED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:19:13-51
+		ADDED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:19:13-51
 	android:name
-		ADDED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:17:13-41
+		ADDED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:17:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:20:13-23:29
+ADDED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:20:13-23:29
 action#android.intent.action.MAIN
-ADDED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:21:17-69
+ADDED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:21:17-69
 	android:name
-		ADDED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:21:25-66
+		ADDED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:21:25-66
 category#android.intent.category.LAUNCHER
-ADDED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:22:17-77
+ADDED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:22:17-77
 	android:name
-		ADDED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:22:27-74
+		ADDED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:22:27-74
 uses-sdk
-INJECTED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml
-INJECTED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml
 MERGED from [androidx.navigation:navigation-common:2.7.7] C:\Users\l22x16w05\.gradle\caches\transforms-3\84a3f230b2257975fa9be12f74308b2a\transformed\navigation-common-2.7.7\AndroidManifest.xml:20:5-44
 MERGED from [androidx.navigation:navigation-common:2.7.7] C:\Users\l22x16w05\.gradle\caches\transforms-3\84a3f230b2257975fa9be12f74308b2a\transformed\navigation-common-2.7.7\AndroidManifest.xml:20:5-44
 MERGED from [androidx.navigation:navigation-runtime:2.7.7] C:\Users\l22x16w05\.gradle\caches\transforms-3\a238fb6ae95b79806367a22f08f0bced\transformed\navigation-runtime-2.7.7\AndroidManifest.xml:20:5-44
@@ -231,9 +231,9 @@ MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\l22x16w05\.gradle\c
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\l22x16w05\.gradle\caches\transforms-3\bb283ea22f971329d4317315b24a6b5a\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\l22x16w05\.gradle\caches\transforms-3\bb283ea22f971329d4317315b24a6b5a\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
 	android:targetSdkVersion
-		INJECTED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml
 activity#androidx.compose.ui.tooling.PreviewActivity
 ADDED from [androidx.compose.ui:ui-tooling-android:1.6.1] C:\Users\l22x16w05\.gradle\caches\transforms-3\d374e1ecb92a91e8a12fd97a5d9bf394\transformed\ui-tooling-release\AndroidManifest.xml:23:9-25:39
 	android:exported

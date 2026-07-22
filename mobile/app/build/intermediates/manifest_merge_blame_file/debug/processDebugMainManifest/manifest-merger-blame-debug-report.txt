@@ -9,8 +9,8 @@
 9        android:targetSdkVersion="34" />
 10
 11    <uses-permission android:name="android.permission.INTERNET" />
-11-->Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:4:5-67
-11-->Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:4:22-64
+11-->C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:4:5-67
+11-->C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:4:22-64
 12
 13    <permission
 13-->[androidx.core:core:1.13.0] C:\Users\l22x16w05\.gradle\caches\transforms-3\2bedb3798792c08f2d3e8331d22b160d\transformed\core-1.13.0\AndroidManifest.xml:22:5-24:47
@@ -24,45 +24,45 @@
 17-->[androidx.core:core:1.13.0] C:\Users\l22x16w05\.gradle\caches\transforms-3\2bedb3798792c08f2d3e8331d22b160d\transformed\core-1.13.0\AndroidManifest.xml:26:22-94
 18
 19    <application
-19-->Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:6:5-25:19
+19-->C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:6:5-25:19
 20        android:allowBackup="true"
-20-->Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:7:9-35
+20-->C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:7:9-35
 21        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 21-->[androidx.core:core:1.13.0] C:\Users\l22x16w05\.gradle\caches\transforms-3\2bedb3798792c08f2d3e8331d22b160d\transformed\core-1.13.0\AndroidManifest.xml:28:18-86
 22        android:debuggable="true"
 23        android:extractNativeLibs="false"
 24        android:icon="@mipmap/ic_launcher"
-24-->Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:8:9-43
+24-->C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:8:9-43
 25        android:label="@string/app_name"
-25-->Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:9:9-41
+25-->C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:9:9-41
 26        android:networkSecurityConfig="@xml/network_security_config"
-26-->Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:14:9-69
+26-->C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:14:9-69
 27        android:roundIcon="@mipmap/ic_launcher"
-27-->Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:10:9-48
+27-->C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:10:9-48
 28        android:supportsRtl="true"
-28-->Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:11:9-35
+28-->C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:11:9-35
 29        android:testOnly="true"
 30        android:theme="@style/Theme.StudyMate"
-30-->Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:13:9-47
+30-->C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:13:9-47
 31        android:usesCleartextTraffic="true" >
-31-->Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:12:9-44
+31-->C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:12:9-44
 32        <activity
-32-->Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:16:9-24:20
+32-->C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:16:9-24:20
 33            android:name="edu.cit.capuras.studymate.mobile.MainActivity"
-33-->Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:17:13-41
+33-->C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:17:13-41
 34            android:exported="true"
-34-->Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:18:13-36
+34-->C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:18:13-36
 35            android:theme="@style/Theme.StudyMate" >
-35-->Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:19:13-51
+35-->C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:19:13-51
 36            <intent-filter>
-36-->Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:20:13-23:29
+36-->C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:20:13-23:29
 37                <action android:name="android.intent.action.MAIN" />
-37-->Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:21:17-69
-37-->Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:21:25-66
+37-->C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:21:17-69
+37-->C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:21:25-66
 38
 39                <category android:name="android.intent.category.LAUNCHER" />
-39-->Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:22:17-77
-39-->Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\AndroidManifest.xml:22:27-74
+39-->C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:22:17-77
+39-->C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\AndroidManifest.xml:22:27-74
 40            </intent-filter>
 41        </activity>
 42        <activity

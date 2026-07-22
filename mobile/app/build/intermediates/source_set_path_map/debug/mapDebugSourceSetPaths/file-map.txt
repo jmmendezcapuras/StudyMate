@@ -45,10 +45,10 @@ edu.cit.capuras.studymate.mobile.app-lifecycle-viewmodel-ktx-2.8.4-43 C:\Users\l
 edu.cit.capuras.studymate.mobile.app-material-release-44 C:\Users\l22x16w05\.gradle\caches\transforms-3\f93bae0ea88b916f93be7e44332d5212\transformed\material-release\res
 edu.cit.capuras.studymate.mobile.app-savedstate-ktx-1.2.1-45 C:\Users\l22x16w05\.gradle\caches\transforms-3\ff0ce6147150a7fb1dbeea57ccdadffd\transformed\savedstate-ktx-1.2.1\res
 edu.cit.capuras.studymate.mobile.app-foundation-layout-release-46 C:\Users\l22x16w05\.gradle\caches\transforms-3\ffffa41d0724b2f2f2480659a90ba238\transformed\foundation-layout-release\res
-edu.cit.capuras.studymate.mobile.app-pngs-47 Z:\L22X16W05\Main\StudyMate\mobile\app\build\generated\res\pngs\debug
-edu.cit.capuras.studymate.mobile.app-resValues-48 Z:\L22X16W05\Main\StudyMate\mobile\app\build\generated\res\resValues\debug
-edu.cit.capuras.studymate.mobile.app-packageDebugResources-49 Z:\L22X16W05\Main\StudyMate\mobile\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
-edu.cit.capuras.studymate.mobile.app-packageDebugResources-50 Z:\L22X16W05\Main\StudyMate\mobile\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
-edu.cit.capuras.studymate.mobile.app-debug-51 Z:\L22X16W05\Main\StudyMate\mobile\app\build\intermediates\merged_res\debug\mergeDebugResources
-edu.cit.capuras.studymate.mobile.app-debug-52 Z:\L22X16W05\Main\StudyMate\mobile\app\src\debug\res
-edu.cit.capuras.studymate.mobile.app-main-53 Z:\L22X16W05\Main\StudyMate\mobile\app\src\main\res
+edu.cit.capuras.studymate.mobile.app-pngs-47 C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\build\generated\res\pngs\debug
+edu.cit.capuras.studymate.mobile.app-resValues-48 C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\build\generated\res\resValues\debug
+edu.cit.capuras.studymate.mobile.app-packageDebugResources-49 C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+edu.cit.capuras.studymate.mobile.app-packageDebugResources-50 C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+edu.cit.capuras.studymate.mobile.app-debug-51 C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\build\intermediates\merged_res\debug\mergeDebugResources
+edu.cit.capuras.studymate.mobile.app-debug-52 C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\debug\res
+edu.cit.capuras.studymate.mobile.app-main-53 C:\Users\l22x16w05\Desktop\GitCloneMain\StudyMate\mobile\app\src\main\res

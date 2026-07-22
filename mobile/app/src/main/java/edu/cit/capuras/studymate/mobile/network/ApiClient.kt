@@ -16,7 +16,7 @@ object ApiClient {
     //   Replace this with your computer's LAN IP, e.g. "http://192.168.1.5:8080/api/"
     // - Deployed the backend somewhere (Render, Railway, etc.)?
     //   Replace this with that public HTTPS URL instead.
-    private const val BASE_URL = "http://10.0.2.2:8080/api/"
+    private const val BASE_URL = "https://studymate-552b.onrender.com/api/"
 
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
