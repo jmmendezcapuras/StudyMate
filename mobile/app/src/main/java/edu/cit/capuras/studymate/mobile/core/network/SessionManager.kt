@@ -8,13 +8,15 @@ object SessionManager {
     private const val KEY_USER_ID = "user_id"
     private const val KEY_USERNAME = "username"
     private const val KEY_TOKEN = "token"
+    private const val KEY_ROLE = "role"
 
-    fun saveSession(context: Context, userId: Long, username: String, token: String) {
+    fun saveSession(context: Context, userId: Long, username: String, token: String, role: String) {
         val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         prefs.edit {
             putLong(KEY_USER_ID, userId)
             putString(KEY_USERNAME, username)
             putString(KEY_TOKEN, token)
+            putString(KEY_ROLE, role)
         }
         // Keep the in-memory token holder in sync so ApiClient's interceptor
         // can attach it to every request without needing a Context.
@@ -35,6 +37,16 @@ object SessionManager {
         val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         return prefs.getString(KEY_TOKEN, null)
     }
+
+    // Mirrors the web client's user.role check (ProtectedRoute) so a
+    // student can't land on the admin screen and vice versa, on the
+    // mobile side too.
+    fun getRole(context: Context): String? {
+        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        return prefs.getString(KEY_ROLE, null)
+    }
+
+    fun isAdmin(context: Context): Boolean = getRole(context) == "ADMIN"
 
     fun isLoggedIn(context: Context): Boolean = getUserId(context) != -1L
 

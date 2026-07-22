@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun LoginScreen(
     viewModel: AuthViewModel,
-    onLoginSuccess: (Long, String, String) -> Unit,
+    onLoginSuccess: (Long, String, String, String) -> Unit,
     onNavigateToRegister: () -> Unit
 ) {
     var username by remember { mutableStateOf("") }
@@ -28,7 +28,7 @@ fun LoginScreen(
 
     LaunchedEffect(state) {
         if (state is AuthUiState.Success) {
-            onLoginSuccess(state.response.id, state.response.username, state.response.token)
+            onLoginSuccess(state.response.id, state.response.username, state.response.token, state.response.role)
             viewModel.resetState()
         }
     }

@@ -13,6 +13,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import edu.cit.capuras.studymate.mobile.core.network.SessionManager
+import edu.cit.capuras.studymate.mobile.feature.admin.AdminScreen
+import edu.cit.capuras.studymate.mobile.feature.admin.AdminViewModel
 import edu.cit.capuras.studymate.mobile.feature.auth.AuthViewModel
 import edu.cit.capuras.studymate.mobile.feature.session.SessionViewModel
 import edu.cit.capuras.studymate.mobile.feature.subject.DashboardScreen
@@ -26,8 +28,10 @@ private object Routes {
     const val LOGIN = "login"
     const val REGISTER = "register"
     const val DASHBOARD = "dashboard/{userId}/{username}"
+    const val ADMIN = "admin/{username}"
 
     fun dashboard(userId: Long, username: String) = "dashboard/$userId/$username"
+    fun admin(username: String) = "admin/$username"
 }
 
 class MainActivity : ComponentActivity() {
@@ -35,6 +39,7 @@ class MainActivity : ComponentActivity() {
     private val authViewModel: AuthViewModel by viewModels()
     private val dashboardViewModel: SubjectViewModel by viewModels()
     private val sessionViewModel: SessionViewModel by viewModels()
+    private val adminViewModel: AdminViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +52,8 @@ class MainActivity : ComponentActivity() {
                     StudyMateApp(
                         authViewModel = authViewModel,
                         dashboardViewModel = dashboardViewModel,
-                        sessionViewModel = sessionViewModel
+                        sessionViewModel = sessionViewModel,
+                        adminViewModel = adminViewModel
                     )
                 }
             }
@@ -59,15 +65,39 @@ class MainActivity : ComponentActivity() {
 fun StudyMateApp(
     authViewModel: AuthViewModel,
     dashboardViewModel: SubjectViewModel,
-    sessionViewModel: SessionViewModel
+    sessionViewModel: SessionViewModel,
+    adminViewModel: AdminViewModel
 ) {
     val navController: NavHostController = rememberNavController()
     val context = androidx.compose.ui.platform.LocalContext.current
 
+    // Mirrors the web client's ProtectedRoute: on app start, a logged-in
+    // admin lands on /admin, a logged-in student lands on /dashboard, and
+    // anyone else starts at /login.
     val startDestination = if (SessionManager.isLoggedIn(context)) {
-        Routes.dashboard(SessionManager.getUserId(context), SessionManager.getUsername(context) ?: "")
+        if (SessionManager.isAdmin(context)) {
+            Routes.admin(SessionManager.getUsername(context) ?: "")
+        } else {
+            Routes.dashboard(SessionManager.getUserId(context), SessionManager.getUsername(context) ?: "")
+        }
     } else {
         Routes.LOGIN
+    }
+
+    fun logoutAndNavigate(coroutineScope: kotlinx.coroutines.CoroutineScope) {
+        coroutineScope.launch {
+            // FR-003: best-effort server-side token revocation, then
+            // always clear local session state regardless of outcome.
+            try {
+                edu.cit.capuras.studymate.mobile.core.network.ApiClient.authApi.logout()
+            } catch (e: Exception) {
+                // Ignore: token may already be expired; proceed with local logout.
+            }
+            SessionManager.clearSession(context)
+            navController.navigate(Routes.LOGIN) {
+                popUpTo(0) { inclusive = true }
+            }
+        }
     }
 
     NavHost(navController = navController, startDestination = startDestination) {
@@ -75,9 +105,10 @@ fun StudyMateApp(
         composable(Routes.LOGIN) {
             LoginScreen(
                 viewModel = authViewModel,
-                onLoginSuccess = { id, username, token ->
-                    SessionManager.saveSession(context, id, username, token)
-                    navController.navigate(Routes.dashboard(id, username)) {
+                onLoginSuccess = { id, username, token, role ->
+                    SessionManager.saveSession(context, id, username, token, role)
+                    val destination = if (role == "ADMIN") Routes.admin(username) else Routes.dashboard(id, username)
+                    navController.navigate(destination) {
                         popUpTo(Routes.LOGIN) { inclusive = true }
                     }
                 },
@@ -88,9 +119,10 @@ fun StudyMateApp(
         composable(Routes.REGISTER) {
             RegisterScreen(
                 viewModel = authViewModel,
-                onRegisterSuccess = { id, username, token ->
-                    SessionManager.saveSession(context, id, username, token)
-                    navController.navigate(Routes.dashboard(id, username)) {
+                onRegisterSuccess = { id, username, token, role ->
+                    SessionManager.saveSession(context, id, username, token, role)
+                    val destination = if (role == "ADMIN") Routes.admin(username) else Routes.dashboard(id, username)
+                    navController.navigate(destination) {
                         popUpTo(Routes.LOGIN) { inclusive = true }
                     }
                 },
@@ -107,21 +139,17 @@ fun StudyMateApp(
                 username = username,
                 viewModel = dashboardViewModel,
                 sessionViewModel = sessionViewModel,
-                onLogout = {
-                    // FR-003: best-effort server-side token revocation, then
-                    // always clear local session state regardless of outcome.
-                    coroutineScope.launch {
-                        try {
-                            edu.cit.capuras.studymate.mobile.core.network.ApiClient.authApi.logout()
-                        } catch (e: Exception) {
-                            // Ignore: token may already be expired; proceed with local logout.
-                        }
-                        SessionManager.clearSession(context)
-                        navController.navigate(Routes.LOGIN) {
-                            popUpTo(0) { inclusive = true }
-                        }
-                    }
-                }
+                onLogout = { logoutAndNavigate(coroutineScope) }
+            )
+        }
+
+        composable(Routes.ADMIN) { backStackEntry ->
+            val username = backStackEntry.arguments?.getString("username") ?: ""
+            val coroutineScope = androidx.compose.runtime.rememberCoroutineScope()
+            AdminScreen(
+                username = username,
+                viewModel = adminViewModel,
+                onLogout = { logoutAndNavigate(coroutineScope) }
             )
         }
     }
